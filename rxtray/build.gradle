@@ -1,8 +1,23 @@
 apply plugin: 'com.android.library'
 
-apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.github.dcendents.android-maven'
+//
+//group = 'https://github.com/NBtang'
 
-group = 'https://github.com/NBtang'
+apply plugin: 'maven-publish'
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.NBtang'
+                artifactId = 'Rxtray'
+                version = '1.1.0'
+            }
+        }
+    }
+}
 
 android {
     compileSdkVersion 30
