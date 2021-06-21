@@ -1,0 +1,3 @@
+include ':rxtray'
+include ':app'
+rootProject.name = "Rxtray"
