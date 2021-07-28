@@ -33,6 +33,16 @@ final class RealPreference<T> implements Preference<T> {
          * {@code editor}.
          */
         void set(@NonNull String key, @NonNull T value, @NonNull TrayPreferences preferences);
+
+        /**
+         * Store non-null {@code value} for {@code key} in {@code editor}.
+         * <p>
+         * Note: Implementations <b>must not</b> call {@code commit()} or {@code apply()} on
+         * {@code editor}.
+         * Has a validity period
+         * Unit second
+         */
+        void set(@NonNull String key, @NonNull T value, int saveTime, @NonNull TrayPreferences preferences);
     }
 
     private final TrayPreferences preferences;
@@ -85,6 +95,12 @@ final class RealPreference<T> implements Preference<T> {
     public void set(@NonNull T value) {
         checkNotNull(value, "value == null");
         adapter.set(key, value, preferences);
+    }
+
+    @Override
+    public void set(@NonNull T value, int saveTime) {
+        checkNotNull(value, "value == null");
+        adapter.set(key, value, saveTime, preferences);
     }
 
     @Override

@@ -35,6 +35,13 @@ public interface Preference<T> {
     void set(@NonNull T value);
 
     /**
+     * Change this preference's stored value to {@code value}.
+     * Has a validity period
+     * Unit second
+     */
+    void set(@NonNull T value, int saveTime);
+
+    /**
      * Returns true if this preference has a stored value.
      */
     boolean isSet();
